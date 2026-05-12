@@ -1,6 +1,8 @@
 import json
 import re
+import sys
 import time
+from datetime import datetime, timezone
 import requests
 from bs4 import BeautifulSoup
 
@@ -10,7 +12,13 @@ PER_PAGE = 10
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
-                  "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+                  "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": "https://www.flyadvanced.com/",
+    "Sec-Fetch-Dest": "iframe",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "cross-site",
 }
 
 
@@ -105,16 +113,34 @@ def parse_listings(soup):
     return flights
 
 
+def load_existing():
+    try:
+        with open(OUTPUT_FILE) as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return None
+
+
 def crawl():
     all_flights = []
     session = requests.Session()
     session.headers.update(HEADERS)
 
     print("Fetching page 1...")
-    r = session.get(BASE_URL, params={"page": 1, "per_page": PER_PAGE}, timeout=15)
-    r.raise_for_status()
-    soup = BeautifulSoup(r.text, "html.parser")
+    try:
+        r = session.get(BASE_URL, params={"page": 1, "per_page": PER_PAGE}, timeout=15)
+        r.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        print(f"HTTP error on page 1: {e}", file=sys.stderr)
+        existing = load_existing()
+        if existing:
+            print("Keeping existing data unchanged.")
+        else:
+            print("No existing data to fall back to.", file=sys.stderr)
+            sys.exit(1)
+        return
 
+    soup = BeautifulSoup(r.text, "html.parser")
     total_pages = get_total_pages(soup)
     print(f"Total pages: {total_pages}")
 
@@ -125,8 +151,12 @@ def crawl():
     for page in range(2, total_pages + 1):
         time.sleep(0.5)
         print(f"Fetching page {page}...")
-        r = session.get(BASE_URL, params={"page": page, "per_page": PER_PAGE}, timeout=15)
-        r.raise_for_status()
+        try:
+            r = session.get(BASE_URL, params={"page": page, "per_page": PER_PAGE}, timeout=15)
+            r.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            print(f"HTTP error on page {page}: {e} — stopping early.", file=sys.stderr)
+            break
         soup = BeautifulSoup(r.text, "html.parser")
         flights = parse_listings(soup)
         print(f"  Page {page}: {len(flights)} listings")
@@ -134,6 +164,7 @@ def crawl():
 
     output = {
         "source_url": BASE_URL,
+        "last_crawled": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "total_listings": len(all_flights),
         "pages_crawled": total_pages,
         "flights": all_flights,

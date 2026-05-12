@@ -705,5 +705,6 @@
       "origin_icao": "KAUS",
       "destination_icao": "KHOU"
     }
-  ]
+  ],
+  "last_crawled": "2026-05-12T05:10:32Z"
 }
