@@ -1,16 +1,22 @@
 import json
 import re
 import time
+from datetime import datetime, timezone
 import requests
 from bs4 import BeautifulSoup
 
 BASE_URL = "https://client.jetinsight.com/embed/a371a901-ab80-42a4-a429-b10468ba9b1f/empty"
+EMBED_HOST = "https://www.flyadvanced.com"
 OUTPUT_FILE = "empty_legs.json"
 PER_PAGE = 10
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
-                  "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+                  "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": EMBED_HOST + "/",
+    "Origin": EMBED_HOST,
 }
 
 
@@ -134,6 +140,7 @@ def crawl():
 
     output = {
         "source_url": BASE_URL,
+        "scraped_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "total_listings": len(all_flights),
         "pages_crawled": total_pages,
         "flights": all_flights,
