@@ -1,6 +1,7 @@
 import json
 import re
 import time
+from datetime import datetime, timezone
 import requests
 from bs4 import BeautifulSoup
 
@@ -105,14 +106,31 @@ def parse_listings(soup):
     return flights
 
 
+def load_existing():
+    try:
+        with open(OUTPUT_FILE) as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return None
+
+
 def crawl():
     all_flights = []
     session = requests.Session()
     session.headers.update(HEADERS)
 
     print("Fetching page 1...")
-    r = session.get(BASE_URL, params={"page": 1, "per_page": PER_PAGE}, timeout=15)
-    r.raise_for_status()
+    try:
+        r = session.get(BASE_URL, params={"page": 1, "per_page": PER_PAGE}, timeout=15)
+        r.raise_for_status()
+    except requests.HTTPError as e:
+        existing = load_existing()
+        if existing:
+            print(f"HTTP error ({e}); keeping existing data from {existing.get('crawled_at', 'unknown')}.")
+        else:
+            raise
+        return
+
     soup = BeautifulSoup(r.text, "html.parser")
 
     total_pages = get_total_pages(soup)
@@ -134,6 +152,7 @@ def crawl():
 
     output = {
         "source_url": BASE_URL,
+        "crawled_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "total_listings": len(all_flights),
         "pages_crawled": total_pages,
         "flights": all_flights,
