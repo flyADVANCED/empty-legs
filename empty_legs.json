@@ -1,26 +1,8 @@
 {
   "source_url": "https://client.jetinsight.com/embed/a371a901-ab80-42a4-a429-b10468ba9b1f/empty",
-  "total_listings": 33,
+  "total_listings": 32,
   "pages_crawled": 4,
   "flights": [
-    {
-      "image_url": "https://cdn.jetinsight.com/images/aircraft/aa00239a-59ed-4320-9c92-610ba7613ce9/aa43b6fb-1d89-496f-b0d1-8b86d0c49856.jpg?1694553092",
-      "origin_airport": "Quonset State",
-      "origin_code": "OQU",
-      "origin_state": "Rhode Island",
-      "destination_airport": "Westchester County",
-      "destination_code": "HPN",
-      "destination_state": "New York",
-      "aircraft": "Cessna Citation CJ3",
-      "date_from": "05/29/26",
-      "date_to": "05/30/26",
-      "duration": "00:36",
-      "seats": 6,
-      "price": "Please inquire",
-      "aircraft_uuid": "aa00239a-59ed-4320-9c92-610ba7613ce9",
-      "origin_icao": "KOQU",
-      "destination_icao": "KHPN"
-    },
     {
       "image_url": "https://cdn.jetinsight.com/images/aircraft/aa00239a-59ed-4320-9c92-610ba7613ce9/aa43b6fb-1d89-496f-b0d1-8b86d0c49856.jpg?1694553092",
       "origin_airport": "Westchester County",
@@ -570,8 +552,8 @@
       "destination_code": "HOU",
       "destination_state": "Texas",
       "aircraft": "Cessna Citation CJ3",
-      "date_from": "09/17/26",
-      "date_to": "09/18/26",
+      "date_from": "09/23/26",
+      "date_to": "09/24/26",
       "duration": "00:42",
       "seats": 6,
       "price": "Please inquire",
