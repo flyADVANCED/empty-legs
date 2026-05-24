@@ -8,9 +8,9 @@
       "origin_airport": "Wings Field",
       "origin_code": "LOM",
       "origin_state": "Pennsylvania",
-      "destination_airport": "Billy Bishop (CYTZ), Ontario",
-      "destination_code": null,
-      "destination_state": null,
+      "destination_airport": "Billy Bishop",
+      "destination_code": "CYTZ",
+      "destination_state": "Ontario",
       "aircraft": "Cirrus SR22T",
       "date_from": "05/30/26",
       "date_to": "05/31/26",
@@ -23,9 +23,9 @@
     },
     {
       "image_url": "https://cdn.jetinsight.com/aircraft/cirrus-sr-22-turbo.jpg",
-      "origin_airport": "Billy Bishop (CYTZ), Ontario",
-      "origin_code": null,
-      "origin_state": null,
+      "origin_airport": "Billy Bishop",
+      "origin_code": "CYTZ",
+      "origin_state": "Ontario",
       "destination_airport": "Laurence G Hanscom Fld",
       "destination_code": "BED",
       "destination_state": "Massachusetts",
@@ -62,9 +62,9 @@
       "origin_airport": "New Castle County",
       "origin_code": "ILG",
       "origin_state": "Delaware",
-      "destination_airport": "Saratoga County (5B2), New York",
-      "destination_code": null,
-      "destination_state": null,
+      "destination_airport": "Saratoga County",
+      "destination_code": "5B2",
+      "destination_state": "New York",
       "aircraft": "Cessna Citation CJ3",
       "date_from": "06/03/26",
       "date_to": "06/04/26",
@@ -561,5 +561,6 @@
       "origin_icao": "KLOM",
       "destination_icao": "KCHA"
     }
-  ]
+  ],
+  "last_updated": "2026-05-24T05:09:49Z"
 }

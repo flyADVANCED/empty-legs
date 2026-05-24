@@ -1,6 +1,7 @@
 import json
 import re
 import time
+from datetime import datetime, timezone
 import requests
 from bs4 import BeautifulSoup
 
@@ -24,8 +25,8 @@ def get_total_pages(soup):
 
 
 def parse_location(text):
-    """Parse 'Wings Field (LOM), Pennsylvania' → (airport_name, iata_code, state)"""
-    m = re.match(r"^(.+?)\s*\(([A-Z]{3})\),\s*(.+)$", text.strip())
+    """Parse 'Wings Field (LOM), Pennsylvania' → (airport_name, code, state)"""
+    m = re.match(r"^(.+?)\s*\(([A-Z0-9]{2,5})\),\s*(.+)$", text.strip())
     if m:
         return m.group(1).strip(), m.group(2), m.group(3).strip()
     return text.strip(), None, None
@@ -134,6 +135,7 @@ def crawl():
 
     output = {
         "source_url": BASE_URL,
+        "last_updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "total_listings": len(all_flights),
         "pages_crawled": total_pages,
         "flights": all_flights,
