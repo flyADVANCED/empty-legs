@@ -1,26 +1,8 @@
 {
   "source_url": "https://client.jetinsight.com/embed/a371a901-ab80-42a4-a429-b10468ba9b1f/empty",
-  "total_listings": 31,
-  "pages_crawled": 4,
+  "total_listings": 30,
+  "pages_crawled": 3,
   "flights": [
-    {
-      "image_url": "https://cdn.jetinsight.com/aircraft/cirrus-sr-22-turbo.jpg",
-      "origin_airport": "Wings Field",
-      "origin_code": "LOM",
-      "origin_state": "Pennsylvania",
-      "destination_airport": "Billy Bishop (CYTZ), Ontario",
-      "destination_code": null,
-      "destination_state": null,
-      "aircraft": "Cirrus SR22T",
-      "date_from": "05/30/26",
-      "date_to": "05/31/26",
-      "duration": "02:18",
-      "seats": 4,
-      "price": "Please inquire",
-      "aircraft_uuid": "3ecf4d49-c080-4226-9890-0a6276e8d83c",
-      "origin_icao": "KLOM",
-      "destination_icao": "CYTZ"
-    },
     {
       "image_url": "https://cdn.jetinsight.com/aircraft/cirrus-sr-22-turbo.jpg",
       "origin_airport": "Billy Bishop (CYTZ), Ontario",
