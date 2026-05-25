@@ -5,9 +5,9 @@
   "flights": [
     {
       "image_url": "https://cdn.jetinsight.com/aircraft/cirrus-sr-22-turbo.jpg",
-      "origin_airport": "Billy Bishop (CYTZ), Ontario",
-      "origin_code": null,
-      "origin_state": null,
+      "origin_airport": "Billy Bishop",
+      "origin_code": "CYTZ",
+      "origin_state": "Ontario",
       "destination_airport": "Laurence G Hanscom Fld",
       "destination_code": "BED",
       "destination_state": "Massachusetts",
@@ -44,9 +44,9 @@
       "origin_airport": "New Castle County",
       "origin_code": "ILG",
       "origin_state": "Delaware",
-      "destination_airport": "Saratoga County (5B2), New York",
-      "destination_code": null,
-      "destination_state": null,
+      "destination_airport": "Saratoga County",
+      "destination_code": "5B2",
+      "destination_state": "New York",
       "aircraft": "Cessna Citation CJ3",
       "date_from": "06/03/26",
       "date_to": "06/04/26",
@@ -365,11 +365,11 @@
     },
     {
       "image_url": "https://cdn.jetinsight.com/images/aircraft/e97ecdf9-1863-4e5a-b697-b27c7780e0b6/8bc407c8-1a27-4afa-840a-73b3fa1438b1.jpg?1762235093",
-      "origin_airport": "Dubrovnik (LDDU),",
-      "origin_code": null,
+      "origin_airport": "Dubrovnik",
+      "origin_code": "LDDU",
       "origin_state": null,
-      "destination_airport": "Split (LDSP),",
-      "destination_code": null,
+      "destination_airport": "Split",
+      "destination_code": "LDSP",
       "destination_state": null,
       "aircraft": "Dassault Falcon 900LX",
       "date_from": "07/02/26",
@@ -543,5 +543,6 @@
       "origin_icao": "KLOM",
       "destination_icao": "KCHA"
     }
-  ]
+  ],
+  "scraped_at": "2026-05-25T01:41:43Z"
 }
