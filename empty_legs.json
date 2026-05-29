@@ -1,8 +1,26 @@
 {
   "source_url": "https://client.jetinsight.com/embed/a371a901-ab80-42a4-a429-b10468ba9b1f/empty",
-  "total_listings": 27,
+  "total_listings": 28,
   "pages_crawled": 3,
   "flights": [
+    {
+      "image_url": "https://cdn.jetinsight.com/images/aircraft/663d21fb-fcb6-4d87-b989-91aa09039e23/cd8a7649-d849-4772-bf8e-19ab29ec37e9.jpg?1771355622",
+      "origin_airport": "Dulles Intl",
+      "origin_code": "IAD",
+      "origin_state": "District Of Columbia",
+      "destination_airport": "New Castle County",
+      "destination_code": "ILG",
+      "destination_state": "Delaware",
+      "aircraft": "Cessna Citation XLS",
+      "date_from": "06/07/26",
+      "date_to": "06/08/26",
+      "duration": "00:36",
+      "seats": 8,
+      "price": "Please inquire",
+      "aircraft_uuid": "663d21fb-fcb6-4d87-b989-91aa09039e23",
+      "origin_icao": "KIAD",
+      "destination_icao": "KILG"
+    },
     {
       "image_url": "https://cdn.jetinsight.com/images/aircraft/663d21fb-fcb6-4d87-b989-91aa09039e23/cd8a7649-d849-4772-bf8e-19ab29ec37e9.jpg?1771355622",
       "origin_airport": "New Castle County",
@@ -49,7 +67,7 @@
       "destination_state": "Michigan",
       "aircraft": "Dassault Falcon 900LX",
       "date_from": "06/08/26",
-      "date_to": "06/09/26",
+      "date_to": "06/08/26",
       "duration": "00:36",
       "seats": 15,
       "price": "Please inquire",
