@@ -1,6 +1,7 @@
 import json
 import re
 import time
+from datetime import datetime, timezone
 import requests
 from bs4 import BeautifulSoup
 
@@ -134,6 +135,7 @@ def crawl():
 
     output = {
         "source_url": BASE_URL,
+        "scraped_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "total_listings": len(all_flights),
         "pages_crawled": total_pages,
         "flights": all_flights,
