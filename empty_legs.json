@@ -1,5 +1,6 @@
 {
   "source_url": "https://client.jetinsight.com/embed/a371a901-ab80-42a4-a429-b10468ba9b1f/empty",
+  "last_crawled_at": "2026-06-04T01:52:43Z",
   "total_listings": 32,
   "pages_crawled": 4,
   "flights": [
@@ -347,11 +348,11 @@
     },
     {
       "image_url": "https://cdn.jetinsight.com/images/aircraft/e97ecdf9-1863-4e5a-b697-b27c7780e0b6/8bc407c8-1a27-4afa-840a-73b3fa1438b1.jpg?1762235093",
-      "origin_airport": "Dubrovnik (LDDU),",
-      "origin_code": null,
+      "origin_airport": "Dubrovnik",
+      "origin_code": "LDDU",
       "origin_state": null,
-      "destination_airport": "Split (LDSP),",
-      "destination_code": null,
+      "destination_airport": "Split",
+      "destination_code": "LDSP",
       "destination_state": null,
       "aircraft": "Dassault Falcon 900LX",
       "date_from": "07/02/26",
