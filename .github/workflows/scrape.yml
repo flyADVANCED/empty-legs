@@ -1,8 +1,10 @@
 name: Scrape Empty Legs
 
 on:
-  schedule:
-    - cron: '0 1 * * *'   # 1:00 AM UTC daily
+  # Daily cron disabled: the target site returns 403 to GitHub's datacenter IPs.
+  # Scraping now runs locally via launchd (com.kevin.empty-legs) on Kevin's Mac.
+  # schedule:
+  #   - cron: '0 1 * * *'   # 1:00 AM UTC daily
   workflow_dispatch:        # allow manual runs from GitHub UI
 
 jobs:
