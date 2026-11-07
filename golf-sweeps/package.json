@@ -1,0 +1,12 @@
+{
+  "name": "golf-sweeps",
+  "version": "0.1.0",
+  "description": "Run 4-man team sweeps at a private golf club: A/B/C/D tiers, balanced teams, many game formats, GHIN handicap sync.",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js"
+  }
+}
