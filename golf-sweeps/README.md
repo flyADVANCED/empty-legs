@@ -34,8 +34,20 @@ Environment variables:
 |---|---|
 | `PORT` | default `3000` |
 | `DATA_FILE` | JSON database path (default `./data/db.json`) |
+| `KV_REST_API_URL`, `KV_REST_API_TOKEN` | store data in Upstash Redis instead of a file (required on Vercel; also accepts `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`) |
 | `ADMIN_PIN` | if set, any change (scores, draws, roster) needs this PIN; leaderboards stay public |
 | `GHIN_USERNAME`, `GHIN_PASSWORD` | turns on GHIN sync (see below) |
+
+## Deploy to Vercel
+
+1. In Vercel, choose **Add New → Project** and import this GitHub repo. Set **Root Directory** to `golf-sweeps` and leave the other build settings alone (`vercel.json` handles them). Then click **Deploy**.
+2. Open the project's **Storage** tab, add an **Upstash Redis** database, and connect it to the project. This creates `KV_REST_API_URL` / `KV_REST_API_TOKEN`. Vercel doesn't keep files between requests, so the app needs this database to save anything.
+3. Under **Settings → Environment Variables**, add `ADMIN_PIN`, which you'll want on a public URL. If you have GHIN credentials, also add `GHIN_USERNAME` and `GHIN_PASSWORD`.
+4. **Redeploy** so the new settings take effect.
+
+Vercel builds production from the repo's default branch. To publish a different branch, either change **Settings → Git → Production Branch** or merge it. Other branches get preview URLs, which Vercel puts behind a login by default.
+
+How it runs there: `public/` is served as static files, and every `/api/*` request goes to the single serverless function in `api/index.js`. Scores are stored one per player or team, so several groups can enter scores at the same time without overwriting each other.
 
 ## About the GHIN connection
 
@@ -57,12 +69,14 @@ Things to know:
 ## Code map
 
 ```
-server.js        HTTP server + JSON API (no framework)
+server.js        local HTTP server (static files + API)
+api/index.js     Vercel serverless entry point
+lib/app.js       JSON API routes (shared by both)
 lib/handicap.js  WHS course/playing handicap, strokes per hole, Stableford
 lib/teams.js     A/B/C/D tiering, balanced & random draws, blind draws
 lib/games.js     game definitions, scoring, tiebreaks, payouts
 lib/ghin.js      GHIN lookup client
-lib/store.js     JSON-file storage
+lib/store.js     storage: JSON file locally, Upstash Redis on Vercel
 public/          single-page front end (vanilla JS)
 test/            node:test unit tests
 ```
